@@ -2,31 +2,26 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  // State to manage the cart and item input
   const [cart, setCart] = useState([]);
   const [itemName, setItemName] = useState('');
   const [itemPrice, setItemPrice] = useState('');
 
-  // Function to add item to the cart
   const addItemToCart = () => {
-    // Check if both fields are filled
     if (itemName && itemPrice) {
       const newItem = { name: itemName, price: parseFloat(itemPrice) };
-      setCart([...cart, newItem]); // Add new item to the cart
-      setItemName(''); // Reset input
-      setItemPrice(''); // Reset input
+      setCart([...cart, newItem]);
+      setItemName('');
+      setItemPrice('');
     } else {
       alert("Please enter both item name and price");
     }
   };
 
-  // Function to remove an item from the cart
   const removeItemFromCart = (index) => {
-    const updatedCart = cart.filter((_, i) => i !== index); // Remove the item at the specified index
-    setCart(updatedCart); // Update the cart state
+    const updatedCart = cart.filter((_, i) => i !== index);
+    setCart(updatedCart);
   };
 
-  // Function to calculate the total price
   const calculateTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price, 0).toFixed(2);
   };
